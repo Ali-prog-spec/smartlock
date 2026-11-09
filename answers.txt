@@ -1,0 +1,10 @@
+# Part A answers — SmartLock Assignment 2
+# Muhammad Ali, 23i-0008, Section E
+# Every value below was recovered over the wire from a capture of my own
+# instance, using the exploits in exploits/ (not read from instance.txt).
+roll           = 23i-0008
+flag           = FLAG{e29a590b9abc0b29}
+recovered_dh_b = 405261734119
+cracked_pin    = violet102
+# optional: hex of (greeting plaintext XOR STATUS-reply plaintext), same session
+nonce_xor_hex  = 0335282620446c382a3f2d6473180f1e1b2f0410561e
