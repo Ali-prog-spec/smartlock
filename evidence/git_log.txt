@@ -1,0 +1,101 @@
+commit 31d5c00fff8caebdc0c7d5f143d466dfca2bbd9c
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    docs: full report (Parts A-D) and v2_changes note
+
+ 23i-0008-E-REPORT.pdf | Bin 0 -> 150384 bytes
+ v2_changes/NOTES.txt  |   3 +++
+ 2 files changed, 3 insertions(+)
+
+commit 8d893e17c9987308de7c8ae72abd0cdab57be95e
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    evidence: captures, reassembled streams, and exploit/self-check tool output
+
+ evidence/23i-0008-E-A1-downgrade.pcap | Bin 0 -> 8964 bytes
+ evidence/23i-0008-E-A2-mitm.pcap      | Bin 0 -> 9508 bytes
+ evidence/23i-0008-E-A5-replay.pcap    | Bin 0 -> 17172 bytes
+ evidence/23i-0008-E-v1-normal.pcap    | Bin 0 -> 4928 bytes
+ evidence/23i-0008-E-v2-normal.pcap    | Bin 0 -> 6176 bytes
+ evidence/A1-downgrade.txt             |  18 ++++++++
+ evidence/A2-mitm.txt                  |  22 ++++++++++
+ evidence/A3-keying_recovery.txt       |   9 ++++
+ evidence/A3-pin_crack_john.txt        |   8 ++++
+ evidence/A4-nonce_reuse.txt           |  15 +++++++
+ evidence/A5-replay.txt                |  18 ++++++++
+ evidence/C1-selfcheck_output.txt      |  15 +++++++
+ evidence/C2-v2_results.txt            |  75 ++++++++++++++++++++++++++++++++++
+ evidence/extract_stream.sh            |  11 +++++
+ evidence/loopback_format_demo.pcap    | Bin 0 -> 4928 bytes
+ evidence/v1_stream.txt                |  14 +++++++
+ evidence/v2_stream.txt                |  14 +++++++
+ 17 files changed, 219 insertions(+)
+
+commit d43b87ada16c400e0b3f277c8b56d0c3a4b23049
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    Part D: record+handshake benchmark, chart, and raw CSV data
+
+ performance/23i-0008-E-TASKD-V1.cpp | 151 ++++++++++++++++++++++++++++++++++++
+ performance/bench_handshake.sh      |  46 +++++++++++
+ performance/handshake.csv           |  61 +++++++++++++++
+ performance/make_chart.py           |  45 +++++++++++
+ performance/perf.csv                |   7 ++
+ performance/perf_chart.png          | Bin 0 -> 70790 bytes
+ performance/perf_record_output.txt  |  18 +++++
+ performance/securelink2.hpp         |  39 ++++++++++
+ 8 files changed, 367 insertions(+)
+
+commit 5d86d6d6f6804645f72a6fb25865ef947b7db54f
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    Part C: securelink2.cpp v2 module (strong suites, HKDF, seq-bound AEAD) + self-check
+
+ evidence/securelink2_selfcheck.cpp |  69 ++++++++++++++
+ securelink2.cpp                    | 185 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 254 insertions(+)
+
+commit 2714ab3ac53b7c5c275b23a793094cc5e3b03129
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    Part A/records+teardown: TASKA4 nonce-reuse, TASKA5 replay; recovered secrets in answers.txt
+
+ answers.txt                       |  10 +++
+ exploits/23i-0008-E-TASKA4-V1.cpp |  87 +++++++++++++++++++++++
+ exploits/23i-0008-E-TASKA5-V1.cpp | 144 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 241 insertions(+)
+
+commit 0e442a3414de32c4151171530ad005826157632a
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    Part A/negotiation+auth: TASKA1 downgrade relay and TASKA2 MITM relay
+
+ exploits/23i-0008-E-TASKA1-V1.cpp | 126 +++++++++++++++++++++++++++
+ exploits/23i-0008-E-TASKA2-V1.cpp | 175 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 301 insertions(+)
+
+commit d83e1d0078ea5042aef4fe8f915cb71458b35b70
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    Part A/keying: shared capture-parser header + TASKA3 baby-step giant-step discrete log
+
+ exploits/23i-0008-E-TASKA-common.hpp | 160 +++++++++++++++++++++++++++++++++++
+ exploits/23i-0008-E-TASKA3-V1.cpp    | 116 +++++++++++++++++++++++++
+ 2 files changed, 276 insertions(+)
+
+commit cf2f026491ff2503ebdfbd7e6f67419f78310eff
+Author: Muhammad Ali <m.alenauman@gmail.com>
+Date:   Mon Nov 9 06:57:43 2026 -0500
+
+    chore: repo setup, build/run instructions, gitignore (no binaries or secrets)
+
+ .gitignore | 18 ++++++++++++++
+ README.txt | 84 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 102 insertions(+)
