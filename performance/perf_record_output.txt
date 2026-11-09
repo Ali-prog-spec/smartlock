@@ -1,0 +1,18 @@
+SmartLock Part D — record-layer performance (1 KiB records)
+Intel i7-9750H @ 2.60GHz, g++ -O2 -std=c++17, OpenSSL 3.x; 10000 records/run, 7 runs
+
+Per-record overhead (plaintext = 1024 bytes):
+  v1: sealed 1040 B (AEAD expansion +16), wire line 2123 B (overhead +1099)
+  v2: sealed 1040 B (AEAD expansion +16), wire line 2093 B (overhead +1069)
+
+Throughput (MB/s, mean +/- sd over 7 runs):
+  v1 seal      760.0 +/-   25.3
+  v1 open      813.9 +/-   29.9
+  v2 seal      685.9 +/-   66.7
+  v2 open      694.6 +/-   66.2
+
+Per-record latency (1 KiB):
+  v1 seal 1.29 us,  v1 open 1.20 us
+  v2 seal 1.42 us,  v2 open 1.41 us
+
+[wrote /home/kali/assignment2/work/perf.csv]
