@@ -1,0 +1,9 @@
+### TASKA3 keying recovery (v1 capture) ###
+$ ./taska3 v1_stream.txt
+[*] captured  suite=AES256-GCM  p=1069135286239  g=2  B=705456199848  A=277461206451
+[+] recovered_dh_b = 405261734119
+[*] check g^b mod p = 705456199848  (must equal B = 705456199848)  -> OK
+[*] shared secret  = 39890955074
+[*] record key     = 0000000000000000000000000000000000000000000000000000000949afab42
+[+] greeting plaintext: Paired with SmartLock. Pairing secret: FLAG{e29a590b9abc0b29}
+[+] flag = FLAG{e29a590b9abc0b29}

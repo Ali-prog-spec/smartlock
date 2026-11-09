@@ -1,0 +1,15 @@
+### TASKA4 nonce reuse (v1 capture) ###
+$ ./taska4 v1_stream.txt
+[*] record 0 nonce = 41f21eff5b41de30af7b6635
+[*] record 2 nonce = 41f21eff5b41de30af7b6635
+[+] SAME nonce reused -> two-time pad applies
+
+[+] P1 xor P2 (nonce_xor_hex) = 0335282620446c382a3f2d6473180f1e1b2f0410561e
+
+[*] using known greeting prefix (39 bytes)
+[+] recovered STATUS-reply plaintext (dots = beyond known prefix):
+    "STATE LOCKED unlocks=0"
+
+[i] the leading recovered bytes are genuine; bytes past the known
+    prefix show as '.' because no crib covers them. Swapping the two
+    indices and using the STATUS crib "STATE " recovers the greeting.

@@ -1,0 +1,18 @@
+=== baseline normal session (shows starting counter) ===
+[lock] STATE LOCKED unlocks=0
+=== replay #1 ===
+[*] reconstructed key = 0000000000000000000000000000000000000000000000000000000949afab42 (recovered_dh_b=405261734119)
+[+] captured UNLOCK record found (record 3)
+[*] lock chose suite: AES256-GCM
+[*] lock's B this session = 705456199848  (captured B = 705456199848)  -> SAME (static exponent!)
+[+] REPLAY ACCEPTED. lock reply: DOOR OPENED (unlock #2)
+[i] run this again and the unlock counter climbs: the old UNLOCK is a skeleton key.
+=== replay #2 (counter must climb) ===
+[*] reconstructed key = 0000000000000000000000000000000000000000000000000000000949afab42 (recovered_dh_b=405261734119)
+[+] captured UNLOCK record found (record 3)
+[*] lock chose suite: AES256-GCM
+[*] lock's B this session = 705456199848  (captured B = 705456199848)  -> SAME (static exponent!)
+[+] REPLAY ACCEPTED. lock reply: DOOR OPENED (unlock #3)
+[i] run this again and the unlock counter climbs: the old UNLOCK is a skeleton key.
+=== normal session after replays (counter reflects replays) ===
+[lock] STATE UNLOCKED unlocks=3

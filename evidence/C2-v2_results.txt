@@ -1,0 +1,75 @@
+############ Part C.2: v1 attacks re-run against v2 ############
+
+===== NORMAL v2 SESSION (succeeds, authenticated + encrypted) =====
+[hub] negotiated suite: AES256-GCM
+[hub] device authenticated: smartlock-23i-0008.local
+[lock] Paired with SmartLock. Pairing secret: FLAG{e29a590b9abc0b29}
+[lock] STATE LOCKED unlocks=0
+[lock] DOOR OPENED (unlock #1)
+[lock] DOOR LOCKED
+
+===== 1) DOWNGRADE (TASKA1) vs v2  ->  REJECTED =====
+########## C.2: DOWNGRADE (taska1) vs v2 ##########
+--- hub_client2 result ---
+[hub] abort: no suite
+--- relay view ---
+--- lock view ---
+SmartLock v2 smartlock-23i-0008.local listening on port 9094
+
+########## C.2: MITM (taska2) vs v2 ##########
+
+===== 2) MITM (TASKA2) vs v2  ->  REJECTED (cert pinned, DH signed) =====
+--- hub_client2 result ---
+[hub] negotiated suite: AES256-GCM
+[hub] device authenticated: smartlock-23i-0008.local   <-- v2 PINS and VERIFIES the cert
+[hub] abort: no DH                                      <-- relay cannot continue the handshake
+--- attacker (relay) view ---
+[mitm] cert forwarded unchanged; hub never checks it    (TRUE in v1, FALSE in v2)
+terminate: stoull  <-- the v1 relay expects a small-group integer DH; v2's DH value is a
+                       signed 2048-bit hex value, so the v1 MITM cannot even parse it, and a
+                       substituted DH would fail the hub's transcript-signature check anyway.
+Note: in v1 the hub printed "certificate not checked"; in v2 it prints "device authenticated".
+A real MITM would need the device RSA private key (to forge CERT + the signed DH transcript),
+which the attacker does not have.
+
+===== 3) KEYING RECOVERY (TASKA3) vs v2 capture  ->  N/A (no small group) =====
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  missing field: p
+/home/kali/assignment2/work/collect_c2.sh: line 34: 63165 Aborted                    /tmp/taska3 /home/kali/assignment2/work/v2_stream.txt 2>&1
+
+===== 4) NONCE REUSE (TASKA4) vs v2 capture  ->  N/A (unique nonce/record) =====
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  missing field: nonce
+/home/kali/assignment2/work/collect_c2.sh: line 34: 63166 Aborted                    /tmp/taska4 /home/kali/assignment2/work/v2_stream.txt 2>&1
+
+===== 5) REPLAY vs v2  ->  REJECTED (sequence-bound AEAD; ephemeral key) =====
+=== baseline normal v2 session ===
+[lock] STATE LOCKED unlocks=0
+[lock] DOOR OPENED (unlock #1)
+[lock] DOOR LOCKED
+=== replay captured v2 UNLOCK on a fresh connection ===
+sent HELLO -> b'suite:AES256-GCM\ttype:SUITE'
+CERT   -> b'name:smartlock-23i-0008.local\t'
+DH     -> got fresh B (ephemeral)
+greeting rec received (sealed under FRESH key)
+replaying captured UNLOCK record ...
+lock reply: (connection closed — record REJECTED)
+=== normal v2 session after replay ===
+[lock] STATE LOCKED unlocks=1
+
+===== C.1 SELF-CHECK (securelink2) =====
+securelink2 self-check (Part C.1)
+  [PASS] 1a strong_suites() excludes NULL
+  [PASS] 1b choose_suite picks strongest common (AES256 over AES128)
+  [PASS] 1c choose_suite aborts ("") on a NULL-only offer (no downgrade)
+  [PASS] 1d choose_suite never returns NULL
+  [PASS] 2a derive_key returns 32 bytes for AES256-GCM
+  [PASS] 2b derive_key output != raw secret
+  [PASS] 2c derive_key gives different keys per direction (c2s != s2c)
+  [PASS] 3 make_nonce unique per seqno and 12 bytes
+  [PASS] 4 seal then open at same seqno round-trips
+  [PASS] 5a replayed record (wrong seqno) rejected
+  [PASS] 5b out-of-order record rejected
+  [PASS] 5c tampered record rejected
+
+TOTAL: 12 passed, 0 failed

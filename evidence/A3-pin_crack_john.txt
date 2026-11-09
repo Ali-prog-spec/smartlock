@@ -1,0 +1,8 @@
+# PIN crack evidence — Muhammad Ali 23i-0008-E
+# captured pinhash from PAIR message:
+c9e87d788ac89d6507c501a93fa8d744
+
+# John the Ripper (raw-md5, wordlist + 3-digit hybrid mask):
+$ john --format=raw-md5 --mask='?w?d?d?d' --wordlist=pin_wordlist.txt pin.hash
+# result:
+?:violet102

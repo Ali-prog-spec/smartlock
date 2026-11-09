@@ -1,0 +1,22 @@
+### TASKA2 MITM (v1) — two keys, reads AES256-GCM traffic ###
+--- attacker (relay) view ---
+[mitm] on :8889 -> 127.0.0.1:9094  (tamper=off)
+[mitm] suite kept strong: AES256-GCM
+[mitm] cert forwarded unchanged; hub never checks it
+[mitm] two distinct keys established:
+       k(hub)  = 000000000000000000000000000000000000000000000000000000dcc8e668ed
+       k(lock) = 0000000000000000000000000000000000000000000000000000006b0c3cb5b5
+[mitm] GREETING (read in the middle): Paired with SmartLock. Pairing secret: FLAG{e29a590b9abc0b29}
+[mitm] *** FLAG = FLAG{e29a590b9abc0b29} ***
+[mitm] hub command: STATUS
+[mitm] lock reply:  STATE LOCKED unlocks=0
+[mitm] hub command: UNLOCK
+[mitm] lock reply:  DOOR OPENED (unlock #1)
+[mitm] hub command: LOCK
+[mitm] lock reply:  DOOR LOCKED
+[mitm] hub command: QUIT
+[mitm] session ended
+
+### TASKA2 with --tamper: hub sends STATUS, attacker forges UNLOCK ###
+--- attacker view ---
+--- hub view (door opened though hub only asked STATUS) ---

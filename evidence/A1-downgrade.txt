@@ -1,0 +1,18 @@
+### TASKA1 downgrade (v1) — attacker relay rewrites HELLO -> NULL ###
+--- relay (attacker) view ---
+[relay] downgrade relay on :8888 -> 127.0.0.1:9094
+[relay] hub connected; relaying
+[relay] rewrote HELLO -> suites:NULL	type:HELLO
+[relay] record plaintext: Paired with SmartLock. Pairing secret: FLAG{e29a590b9abc0b29}
+[relay] *** FLAG = FLAG{e29a590b9abc0b29} ***
+[relay] record plaintext: STATE LOCKED unlocks=0
+[relay] record plaintext: DOOR OPENED (unlock #1)
+[relay] record plaintext: DOOR LOCKED
+[relay] session ended
+--- hub view (negotiated NULL; flag in clear) ---
+[hub] negotiated suite: NULL
+[hub] device claims to be: smartlock-23i-0008.local (certificate not checked)
+[lock] Paired with SmartLock. Pairing secret: FLAG{e29a590b9abc0b29}
+[lock] STATE LOCKED unlocks=0
+[lock] DOOR OPENED (unlock #1)
+[lock] DOOR LOCKED

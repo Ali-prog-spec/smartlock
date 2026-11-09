@@ -1,0 +1,15 @@
+securelink2 self-check (Part C.1)
+  [PASS] 1a strong_suites() excludes NULL
+  [PASS] 1b choose_suite picks strongest common (AES256 over AES128)
+  [PASS] 1c choose_suite aborts ("") on a NULL-only offer (no downgrade)
+  [PASS] 1d choose_suite never returns NULL
+  [PASS] 2a derive_key returns 32 bytes for AES256-GCM
+  [PASS] 2b derive_key output != raw secret
+  [PASS] 2c derive_key gives different keys per direction (c2s != s2c)
+  [PASS] 3 make_nonce unique per seqno and 12 bytes
+  [PASS] 4 seal then open at same seqno round-trips
+  [PASS] 5a replayed record (wrong seqno) rejected
+  [PASS] 5b out-of-order record rejected
+  [PASS] 5c tampered record rejected
+
+TOTAL: 12 passed, 0 failed
