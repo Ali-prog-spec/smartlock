@@ -1,0 +1,3 @@
+The provided v2 scaffold (lock_server2.cpp, hub_client2.cpp, dh2048.hpp, slink.hpp,
+pki.hpp) was NOT modified. All Part C work is in the top-level securelink2.cpp, which
+the scaffold links against. This folder is intentionally free of changed scaffold files.
