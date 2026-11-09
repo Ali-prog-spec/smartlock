@@ -1,0 +1,18 @@
+# build output — never commit binaries
+*.o
+*.exe
+taska1
+taska2
+taska3
+taska4
+taska5
+taskd
+selfcheck
+lock_server
+hub_client
+lock_server2
+hub_client2
+instance_generator
+a.out
+# local secrets (regenerable from the roll via instance_generator)
+instance.txt
